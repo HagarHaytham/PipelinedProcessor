@@ -1,3 +1,5 @@
 /VHDL/work/*
 /VHDL/*.mpf
 /VHDL/*.mti
+/VHDL/*.wlf
+/VHDL/*.bak
