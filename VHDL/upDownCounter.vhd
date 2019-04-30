@@ -24,7 +24,7 @@ BEGIN
 	PROCESS(i_clk, i_rst)
 	BEGIN
 		IF(i_rst = '1')	THEN
-			cnt <= x"0000";
+			cnt <= (OTHERS => '0');
 
 		ELSIF rising_edge(i_clk)	THEN
 			IF(i_en = '1')	THEN
