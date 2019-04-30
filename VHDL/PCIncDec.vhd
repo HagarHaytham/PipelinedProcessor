@@ -9,8 +9,8 @@ ENTITY circuitPC IS
 		i_dir	:	IN	std_logic;	--0 => increment, 1 => decrement
 		i_step	:	IN	std_logic;	--Step from current address
 		i_sel	:	IN	std_logic;	--Selection line for PC input 0 => load, 1 => Increment/Decrement
-		i_adrs	:	IN	std_logic_vector(19 downto 0);	--Input address to load in PC
-		o_adrs	:	OUT	std_logic_vector(19 downto 0)	--Output address from PC
+		i_adrs	:	IN	std_logic_vector(31 downto 0);	--Input address to load in PC
+		o_adrs	:	OUT	std_logic_vector(31 downto 0)	--Output address from PC
 	);
 END ENTITY;
 
@@ -30,15 +30,16 @@ GENERIC(n	:	INTEGER	:=	16);
 	);
 END COMPONENT;
 
---SIGNAL enCntr	:	std_logic;
+SIGNAL enCntr		:	std_logic;
 --SIGNAL dirCntr	:	std_logic;
 
 BEGIN
 
-	regCntrPC:	upDwnCntr GENERIC MAP(32) PORT MAP(i_clk, i_rst, not i_stall, i_dir, i_step, i_sel
+	enCntr <= not i_stall;
+	regCntrPC:	upDwnCntr GENERIC MAP(32) PORT MAP(i_clk, i_rst, enCntr, i_dir, i_step, i_sel, i_adrs, o_adrs);
 --	PROCESS(i_clk, i_rst)
 --	BEGIN
 --		IF(i_rst = '0' and i_stall = '0')	THEN
 --			IF rising_edge(i_clk)	THEN
 --				IF(i_sel = '0')	THEN
-END ARCHITECTUTRE;
+END ARCHITECTURE;
