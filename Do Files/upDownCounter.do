@@ -34,22 +34,22 @@ run
 run
 force -freeze sim:/updwncntr/i_en 1 0
 run
+force -freeze sim:/updwncntr/i_load 1 0
 run
-force -freeze sim:/updwncntr/i_dir 1 0
 run
-force -freeze sim:/updwncntr/i_dir 0 0
+force -freeze sim:/updwncntr/i_step 0 0
+run
+run
 force -freeze sim:/updwncntr/i_step 1 0
 run
 run
 force -freeze sim:/updwncntr/i_dir 1 0
 run
-force -freeze sim:/updwncntr/i_dir 0 0
+run
+run
+force -freeze sim:/updwncntr/i_step 0 0
+run
 force -freeze sim:/updwncntr/i_en 0 0
 run
-run
-run
-force -freeze sim:/updwncntr/i_load 1 0
-run
-force -freeze sim:/updwncntr/i_load 0 0
 run
 run

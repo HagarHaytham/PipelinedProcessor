@@ -25,22 +25,6 @@ force -freeze sim:/updwncntr/i_rst 1 0
 force -freeze sim:/updwncntr/i_en 0 0
 force -freeze sim:/updwncntr/i_dir 0 0
 force -freeze sim:/updwncntr/i_step 0 0
-force -freeze sim:/updwncntr/i_load 0101 0
-# ** Error: (vsim-4026) Value "0101" does not represent a literal of the enumeration type.
-# ** Error: (vsim-4011) Invalid force value: 0101 0.
-# 
-force -freeze sim:/updwncntr/i_cnt 16'0101 0
-# Invalid radix for based number: 0.
-# ** Error: (vsim-4011) Invalid force value: 16'0101 0.
-# 
-force -freeze sim:/updwncntr/i_load 0 0
-force -freeze sim:/updwncntr/i_clk 1 10, 0 {60 ps} -r 100
-run
-restart
-force -freeze sim:/updwncntr/i_rst 1 0
-force -freeze sim:/updwncntr/i_en 0 0
-force -freeze sim:/updwncntr/i_dir 0 0
-force -freeze sim:/updwncntr/i_step 0 0
 force -freeze sim:/updwncntr/i_load 0 0
 force -freeze sim:/updwncntr/i_cnt 0101 0
 force -freeze sim:/updwncntr/i_clk 1 10, 0 {60 ps} -r 100
