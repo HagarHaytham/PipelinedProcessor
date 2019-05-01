@@ -18,7 +18,7 @@ END ENTITY ram;
 ARCHITECTURE syncram OF ram IS
 
 	TYPE ram_type IS ARRAY(0 TO 63) OF std_logic_vector(15 DOWNTO 0);
-	SIGNAL add : std_logic_vector(19 DOWNTO 0);
+	
 	SIGNAL ram : ram_type :=(
 	0 => X"0000",1 => X"0101",2 => X"0102",16#38# => X"0103",16#39# => X"0104",16#3A# => X"0105",OTHERS => X"00FF"
 	);
@@ -33,11 +33,11 @@ ARCHITECTURE syncram OF ram IS
 						data32(15 downto 0) <= ram(to_integer(unsigned(address)));
 					     ELSE 
 						data32(15 downto 0) <= ram(to_integer(unsigned(address)));
-						add <= address + '1' ;
-						data32(31 downto 16) <= ram(to_integer(unsigned(add)));
+						data32(31 downto 16) <= ram(to_integer(unsigned(address + '1')));
 					     END IF;
 					END IF;
 				END IF;
 		END PROCESS;
+
 		--dataout <= ram(to_integer(unsigned(address)));
 END syncram;
