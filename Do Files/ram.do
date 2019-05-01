@@ -1,4 +1,4 @@
-vsim -gui work.ram
+vsim work.ram
 # vsim 
 # Start time: 17:23:28 on May 01,2019
 # Loading std.standard
@@ -8,8 +8,10 @@ vsim -gui work.ram
 # Loading ieee.std_logic_unsigned(body)
 # Loading ieee.numeric_std(body)
 # Loading work.ram(syncram)
+
 mem load -i {ram.mem} /ram/ram
 add wave -position insertpoint sim:/ram/*
+
 force -freeze sim:/ram/clk 1 10, 0 {60 ns} -r 100
 force -freeze sim:/ram/word 0 0
 force -freeze sim:/ram/RW 0 0
