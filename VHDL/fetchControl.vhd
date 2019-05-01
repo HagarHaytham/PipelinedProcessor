@@ -33,7 +33,7 @@ BEGIN
 			ELSIF(i_hzrd = '0' and i_brnch = '1')	THEN
 				o_stall <= '0';
 				o_dir <= '0';
-				o_step <= '0';
+				o_step <= '1';
 				o_sel <= '0';
 			ELSIF(i_hzrd = '1')	THEN
 				o_stall <= '1';

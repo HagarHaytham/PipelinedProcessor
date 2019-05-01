@@ -1,5 +1,6 @@
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
+USE IEEE.std_logic_unsigned.all;
 
 ENTITY fetchCirc IS
 	PORT(
@@ -56,14 +57,22 @@ SIGNAL stall	:	std_logic;
 SIGNAL dir	:	std_logic;
 SIGNAL step	:	std_logic;
 SIGNAL sel	:	std_logic;
-SIGNAL adrs	:	std_logic_vector(31 downto 0);
+SIGNAL adrsPCI	:	std_logic_vector(31 downto 0);
+SIGNAL adrsPCO	:	std_logic_vector(31 downto 0);
+SIGNAL adrsMem	:	std_logic_vector(31 downto 0);
 
 BEGIN
 
+	adrsMem <= adrsPCO	WHEN i_brnch = '0'
+	ELSE i_adrs		WHEN i_brnch = '1';
+
+	adrsPCI <= i_adrs + 2	WHEN i_brnch = '1'
+	ELSE i_adrs		WHEN i_brnch = '0';
+
 	ftchCntrl:	fetchControl PORT MAP(i_clkC, i_rst, i_hzrd, i_brnch, stall, dir, step, sel);
 
-	PC:		circuitPC PORT MAP(i_clkC, i_rst, stall, dir, step, sel, i_adrs, adrs);
+	PC:		circuitPC PORT MAP(i_clkC, i_rst, stall, dir, step, sel, adrsPCI, adrsPCO);
 
-	mem:		ram PORT MAP(i_clkM, step, '0', adrs(19 downto 0), x"0000", o_inst);
+	mem:		ram PORT MAP(i_clkM, step, '0', adrsMem(19 downto 0), x"0000", o_inst);
 
 END ARCHITECTURE;
