@@ -1,0 +1,43 @@
+
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_unsigned.ALL;
+USE IEEE.numeric_std.all;
+
+ENTITY ram IS
+	PORT(
+		clk : IN std_logic;
+		word  : IN std_logic;
+		RW  : IN std_logic;
+		address : IN  std_logic_vector(19 DOWNTO 0);
+		datain  : IN  std_logic_vector(15 DOWNTO 0);
+		data32 : OUT std_logic_vector(31 DOWNTO 0));
+		--data16 : OUT std_logic_vector(15 DOWNTO 0));
+END ENTITY ram;
+
+ARCHITECTURE syncram OF ram IS
+
+	TYPE ram_type IS ARRAY(0 TO 63) OF std_logic_vector(15 DOWNTO 0);
+	SIGNAL add : std_logic_vector(19 DOWNTO 0);
+	SIGNAL ram : ram_type :=(
+	0 => X"0000",1 => X"0101",2 => X"0102",16#38# => X"0103",16#39# => X"0104",16#3A# => X"0105",OTHERS => X"00FF"
+	);
+	
+	BEGIN
+		PROCESS(clk) IS
+			BEGIN
+				IF rising_edge(clk) THEN  
+					IF RW = '1' THEN
+						ram(to_integer(unsigned(address))) <= datain;
+					ELSE IF word = '0' THEN
+						data32(15 downto 0) <= ram(to_integer(unsigned(address)));
+					     ELSE 
+						data32(15 downto 0) <= ram(to_integer(unsigned(address)));
+						add <= address + '1' ;
+						data32(31 downto 16) <= ram(to_integer(unsigned(add)));
+					     END IF;
+					END IF;
+				END IF;
+		END PROCESS;
+		--dataout <= ram(to_integer(unsigned(address)));
+END syncram;
