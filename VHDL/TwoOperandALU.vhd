@@ -48,13 +48,13 @@ z <= '1' when myout=x"0000"
 else '0';
 ccrAdd <= carrout & myout(15) &z;
 ccrAnd <= flagsIn(2) & myout(15) &z;
-ccrShl <= a(16-to_integer(unsigned(b)))& myout(15) &z;  -- need to adjust carry
-ccrShr <= a(to_integer(unsigned(b)))& myout(15) &z;  -- need to adjust carry
+--ccrShl <= a(16-to_integer(unsigned(b)))& myout(15) &z;  -- need to adjust carry
+--ccrShr <= a(to_integer(unsigned(b)))& myout(15) &z;  -- need to adjust carry
 Mb : MUX2x1 GENERIC MAP (m) PORT MAP (b,bbar,s(1),adderin2);
 Mc : MUX2x1 GENERIC MAP (1) PORT MAP ("0","1",s(1),carrin);
 FA : FullAdder GENERIC MAP (m) PORT MAP (a,adderin2,carrin(0),ad,carrout);
 M1 : MUX8x1 GENERIC MAP (m)  PORT MAP (a,ad,ad,an,o,sl1,sr1,x"0000",s,myout);
-M2 : MUX8x1 GENERIC MAP (3) PORT MAP (flagsIn,ccrAdd,ccrAdd,ccrAnd,ccrAnd,ccrShl,ccrShr,flagsIn,s,flagsOut);
+M2 : MUX8x1 GENERIC MAP (3) PORT MAP (flagsIn,ccrAdd,ccrAdd,ccrAnd,ccrAnd,ccrAnd,ccrAnd,flagsIn,s,flagsOut);
 c<= myout;
 
 -- flagsOut <="000";
