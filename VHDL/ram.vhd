@@ -7,12 +7,12 @@ USE IEEE.numeric_std.all;
 ENTITY ram IS
 	PORT(
 		clk : IN std_logic;
-		word  : IN std_logic;
-		RW  : IN std_logic;
-		address : IN  std_logic_vector(19 DOWNTO 0);
-		datain  : IN  std_logic_vector(15 DOWNTO 0);
-		data32 : OUT std_logic_vector(31 DOWNTO 0));
-		--data16 : OUT std_logic_vector(15 DOWNTO 0));
+		word  : IN std_logic; 				-- 0-> OneWord, 1-> TwoWords
+		RW  : IN std_logic; 				-- 0->read, 1->write
+		address : IN  std_logic_vector(19 DOWNTO 0);	-- 20bits addr
+		datain  : IN  std_logic_vector(15 DOWNTO 0);	-- if write needed
+		data32 : OUT std_logic_vector(31 DOWNTO 0));	-- data Out 32bit if word=0, 16bit if word=1
+		
 END ENTITY ram;
 
 ARCHITECTURE syncram OF ram IS
