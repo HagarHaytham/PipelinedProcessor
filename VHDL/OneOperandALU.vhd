@@ -37,7 +37,6 @@ END COMPONENT FullAdder;
 BEGIN
 b <= x"0000";
 d <= NOT a ;
---z<='0';
 z <= '1' when myout=x"0000"
 else '0';
 ccr1 <='0'&myout(15)&z;
