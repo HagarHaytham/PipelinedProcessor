@@ -31,6 +31,7 @@ ARCHITECTURE syncram OF ram IS
 						ram(to_integer(unsigned(address))) <= datain;
 					ELSE IF word = '0' THEN
 						data32(15 downto 0) <= ram(to_integer(unsigned(address)));
+						data32(31 downto 16) <= X"0000";
 					     ELSE 
 						data32(15 downto 0) <= ram(to_integer(unsigned(address)));
 						data32(31 downto 16) <= ram(to_integer(unsigned(address + '1')));
@@ -39,5 +40,5 @@ ARCHITECTURE syncram OF ram IS
 				END IF;
 		END PROCESS;
 
-		--dataout <= ram(to_integer(unsigned(address)));
+		
 END syncram;
