@@ -104,10 +104,16 @@ reg7 : n_reg generic map(16) port map(regIn7,regEn7,clk,rst,regOut7);
 process (clk,RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu)
 
 begin
+  if(rst = '1') then
+	src1 <= (others => '0');
+	dst1 <= (others => '0');
+	src2 <= (others => '0');
+	dst2 <= (others => '0');
+  else
 	if(Rsrc1 = WMem ) then
 		src1 <= memData;
 	elsif (Rsrc1 = WAlu ) then
-		src1 < aluData;
+		src1 <= aluData;
 	elsif (RSrc1 = "0000") then
 		src1 <= regOut0;
 	elsif (RSrc1 = "0001") then
@@ -125,12 +131,13 @@ begin
 	elsif (Rsrc1 = "0111") then
 		src1 <= regOut7;
 	end if;
+   end if;
 
-
+   if(
 	if(RDst1 = WMem ) then
 		dst1 <= memData;
 	elsif (RDst1 = WAlu ) then
-		dst1 < aluData;
+		dst1 <= aluData;
 	elsif (RDst1 = "0000") then
 		dst1 <= regOut0;
 	elsif (RDst1 = "0001") then
@@ -152,7 +159,7 @@ begin
 	if(Rsrc2 = WMem ) then
 		src2 <= memData;
 	elsif (Rsrc2 = WAlu ) then
-		src2 < aluData;
+		src2 <= aluData;
 	elsif (RSrc2 = "0000") then
 		src2 <= regOut0;
 	elsif (RSrc2 = "0001") then
@@ -174,7 +181,7 @@ begin
 	if(RDst2 = WMem ) then
 		dst2 <= memData;
 	elsif (RDst2 = WAlu ) then
-		dst2 < aluData;
+		dst2 <= aluData;
 	elsif (RDst2 = "0000") then
 		dst2 <= regOut0;
 	elsif (RDst2 = "0001") then
