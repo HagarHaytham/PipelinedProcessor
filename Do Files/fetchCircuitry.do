@@ -12,7 +12,11 @@ vsim work.fetchcirc
 # Loading work.updwncntr(behavioral)
 # Loading ieee.numeric_std(body)
 # Loading work.ram(syncram)
+<<<<<<< HEAD
 mem load -i /home/ayman/ArchProject/PipelinedProcessor/VHDL/ram.mem /fetchcirc/mem/ram
+=======
+mem load -i ram.mem mem
+>>>>>>> 39c817f0b5e670a33d75f4b2d0626f02d652848d
 add wave *
 force -freeze sim:/fetchcirc/i_rst 1 0
 force -freeze sim:/fetchcirc/i_hzrd 0 0
