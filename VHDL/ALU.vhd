@@ -32,14 +32,17 @@ COMPONENT OneOperandALU IS
         c : OUT STD_LOGIC_VECTOR(m-1 DOWNTO 0);
         flagsOut: OUT STD_LOGIC_VECTOR(2 DOWNTO 0)); -- C - N - Z
 END COMPONENT OneOperandALU;
-SIGNAL oneout,twoout :STD_LOGIC_VECTOR(m-1 DOWNTO 0);
-SIGNAL ccr1,ccr2 :STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL oneout,twoout,notaluout,c1 :STD_LOGIC_VECTOR(m-1 DOWNTO 0);
+SIGNAL ccr1,ccr2,flagsOut1 :STD_LOGIC_VECTOR(2 DOWNTO 0);
+
 BEGIN
 
 top: TwoOperandALU GENERIC MAP (m) PORT MAP (a,b,s(2 DOWNTO 0),flagsIn,twoout,ccr2);
 oop: OneOperandALU GENERIC MAP (m) PORT MAP (a,s(2 DOWNTO 0),flagsIn,oneout,ccr1);
-Mout: MUX2x1 GENERIC MAP (m) PORT MAP (oneout,twoout,s(3),c);
-Mccr: MUX2x1 GENERIC MAP (3) PORT MAP (ccr1,ccr2,s(3),flagsOut);
-
+Mout: MUX2x1 GENERIC MAP (m) PORT MAP (oneout,twoout,s(3),c1);
+Mccr: MUX2x1 GENERIC MAP (3) PORT MAP (ccr1,ccr2,s(3),flagsOut1);
+notaluout<="0000000000000000";
+Moutfinal : MUX2x1 GENERIC MAP (m) PORT MAP (c1,notaluout,s(4),c);
+Mccrfinal : MUX2x1 GENERIC MAP (3) PORT MAP (flagsOut1,flagsIn,s(4),flagsOut);
 END ARCHITECTURE;
 

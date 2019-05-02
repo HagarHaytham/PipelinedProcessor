@@ -6,6 +6,7 @@ Entity reg_file is
 port(	clk,rst,wM,wA : in std_logic ;	
 	RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu : in std_logic_vector(3 downto 0);
 	memData,aluData : in std_logic_vector(15 downto 0);
+	flags : in std_logic_vector(2 downto 0);
 	src1,dst1,src2,dst2 : out std_logic_vector(15 downto 0));	
 	
 End Entity;
@@ -54,6 +55,7 @@ signal regOut4 : std_logic_vector(15 downto 0);
 signal regOut5 : std_logic_vector(15 downto 0);
 signal regOut6 : std_logic_vector(15 downto 0);
 signal regOut7 : std_logic_vector(15 downto 0);
+signal fRegOut : std_logic_vector(2 downto 0);
 
 signal regIn0 : std_logic_vector(15 downto 0);
 signal regIn1 : std_logic_vector(15 downto 0);
@@ -64,7 +66,7 @@ signal regIn5 : std_logic_vector(15 downto 0);
 signal regIn6 : std_logic_vector(15 downto 0);
 signal regIn7 : std_logic_vector(15 downto 0);
 
-signal regEn0,regEn1,regEn2,regEn3,regEn4,regEn5,regEn6,regEn7 : std_logic;
+signal regEn0,regEn1,regEn2,regEn3,regEn4,regEn5,regEn6,regEn7,fRegEn : std_logic;
 
 Begin
 
@@ -91,6 +93,7 @@ regEn4 <= selMem(4) or selAlu(4);
 regEn5 <= selMem(5) or selAlu(5);
 regEn6 <= selMem(6) or selAlu(6);
 regEn7 <= selMem(7) or selAlu(7);
+fRegEn <= selMem(10) or selAlu(10);
 
 reg0 : n_reg generic map(16) port map(regIn0,regEn0,clk,rst,regOut0);
 reg1 : n_reg generic map(16) port map(regIn1,regEn1,clk,rst,regOut1);
@@ -100,6 +103,7 @@ reg4 : n_reg generic map(16) port map(regIn4,regEn4,clk,rst,regOut4);
 reg5 : n_reg generic map(16) port map(regIn5,regEn5,clk,rst,regOut5);
 reg6 : n_reg generic map(16) port map(regIn6,regEn6,clk,rst,regOut6);
 reg7 : n_reg generic map(16) port map(regIn7,regEn7,clk,rst,regOut7);
+flagReg : n_reg generic map(3) port map(flags,fRegEn,clk,rst,fRegOut);
 
 process (clk,RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu)
 
@@ -130,6 +134,8 @@ begin
 		src1 <= regOut6;
 	elsif (Rsrc1 = "0111") then
 		src1 <= regOut7;
+	elsif (Rsrc1 = "1010") then
+		src1 <= fRegOut;
 	end if;
 
 
@@ -176,6 +182,8 @@ begin
 		src2 <= regOut6;
 	elsif (Rsrc2 = "0111") then
 		src2 <= regOut7;
+	elsif (Rsrc2 = "1010") then
+		src2 <= fRegOut;
 	end if;
 
 	if(RDst2 = WMem ) then

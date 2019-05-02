@@ -7,6 +7,7 @@ port(
 	inst : in std_logic_vector (31 downto 0);
 	clk,rst,wMem,wAlu : in std_logic; 
 	wMAdd,wAAdd : in std_logic_vector(3 downto 0);
+	fData : in std_logic_vector(2 downto 0);
 	mData,aData : in std_logic_vector(15 downto 0);
 	wM,wA : out std_logic;
 	s1,d1,s2,d2 : out std_logic_vector(15 downto 0);
@@ -22,12 +23,13 @@ Component reg_file is
 port(	clk,rst,wM,wA : in std_logic ;	
 	RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu : in std_logic_vector(3 downto 0);
 	memData,aluData : in std_logic_vector(15 downto 0);
+	flags : in std_logic_vector(2 downto 0);
 	src1,dst1,src2,dst2 : out std_logic_vector(15 downto 0));	
 	
 End Component;
 
 signal sAdd1,dAdd1,sAdd2,dAdd2 : std_logic_vector (3 downto 0);
-
+signal flags : std_logic_vector ( 2 downto 0);
 begin 
 
 
@@ -90,7 +92,13 @@ elsif ((inst(15 downto 14) = "10")or (inst(15 downto 11 )= "11100") or (inst(15 
 	opcode2 <= inst(15 downto 11);
 end if;
 	
+if(wMAdd = "1010") then 
+	flags <= mData(2 downto 0);
+else
+	flags <= fData;
+end if;
+
 end process;
 
-rf : reg_file port map(clk,rst,wMem,wAlu,sAdd1,dAdd1,sAdd2,dAdd2,wMAdd,wAAdd,mData,aData,s1,d1,s2,d2);
+rf : reg_file port map(clk,rst,wMem,wAlu,sAdd1,dAdd1,sAdd2,dAdd2,wMAdd,wAAdd,mData,aData,flags,s1,d1,s2,d2);
 end Dec;
