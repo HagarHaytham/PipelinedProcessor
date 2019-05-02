@@ -29,3 +29,7 @@ force -freeze sim:/ram/address 0008 0
 run
 force -freeze sim:/ram/RW 0 0
 run
+force -freeze sim:/ram/word 1 0
+force -freeze sim:/ram/RW 1 0
+force -freeze sim:/ram/address 20'h00003 0
+run
