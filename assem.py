@@ -48,7 +48,7 @@ def ORG(lines):
                 reg = searchDict('R1',regDict)
                 src = searchDict('PC',regDict)
                 lines[i]=lines[i].replace(lines[i],instr[1]+reg+src)
-                line = complete(lines[i])
+                line = complete(lines[i],'0')
                 memInstr.write(line)
                 memInstr.write('\n')
                 indexInstr += 1
@@ -87,8 +87,12 @@ def ORG(lines):
 
 ##############################################
 #complete instr to fill 16bit
-def complete(line):
+def complete(line,op1):
     if(len(line)<16):
+        if(op1 != '0'): 
+            op1 = searchDict(op1,regDict)
+            line += op1
+        
         for i in range(16 - len(line)):
             line+='0'
     return line
@@ -104,7 +108,7 @@ def getInstr(instr,Str,indexInstr):
             if(opp2 == None):
                 sys.exit( 'Invalid operand in opr2 ')
             else:
-                done = complete(opp2)
+                done = complete(opp2,'0')
                 memInstr.write(done)
                 memInstr.write('\n')
                 indexInstr += 1
@@ -119,7 +123,7 @@ def getInstr(instr,Str,indexInstr):
             if(opp1 == None):
                 sys.exit( 'Invalid operand in opr1 ')
             else:
-                done = complete(opp1)
+                done = complete(opp1,Str[1] if len(Str)==2 else '0')
                 memInstr.write(done)
                 memInstr.write('\n')
                 indexInstr += 1
@@ -132,7 +136,7 @@ def getInstr(instr,Str,indexInstr):
             if(Mem == None):
                 sys.exit( 'Invalid operand in mem ')
             else:
-                done = complete(Mem)
+                done = complete(Mem,'0' if len(Str)==3 else Str[1])
                 memInstr.write(done)
                 memInstr.write('\n')
                 indexInstr += 1
@@ -145,7 +149,7 @@ def getInstr(instr,Str,indexInstr):
             if(Branch == None):
                 sys.exit( 'Invalid operand in branch ')
             else:
-                done = complete(Branch)
+                done = complete(Branch,'0' if (len(Str)==1) else Str[1])
                 memInstr.write(done)
                 memInstr.write('\n')
                 indexInstr += 1
@@ -161,8 +165,10 @@ def opr2(opp1,opp2,instr):
         return None
     Lines += op1
     if(opp2.isdigit()):
-        Lines = complete(Lines)
-        Lines += '\n'+opp2
+        Lines = complete(Lines,opp1)
+        a =bin(int(opp2,16))
+        Lines += '\n'+a[2:].zfill(16)
+        #Lines += '\n'+opp2
     else:
         op2 = searchDict(opp2,regDict)
         if( op2 == -1):
@@ -186,9 +192,10 @@ def mem(opp1,opp2,instr):
     res = opr1(opp1,instr)
     if(opp2 != '0'):
         if(opp2.isdigit()):
-            res = complete(res)
+            res = complete(res,opp1)
             a =bin(int(opp2,16))
             res += '\n'+a[2:].zfill(16)
+            #print(res)
         else:
             op2 = searchDict(opp2,regDict)
             if(op2 == -1 ):
