@@ -43,15 +43,15 @@ def ORG(lines):
         instrWithoutORG = searchDict(addr[0],instDict)
         if(addr[0] == '.ORG' ):
             
-            if(addr[1] =='0'):
-                instr = searchDict('LDD',instDict)
-                reg = searchDict('R1',regDict)
-                src = searchDict('PC',regDict)
-                lines[i]=lines[i].replace(lines[i],instr[1]+reg+src)
-                line = complete(lines[i],'0')
-                memInstr.write(line)
-                memInstr.write('\n')
-                indexInstr += 1
+            #if(addr[1] =='0'):
+#                instr = searchDict('LDD',instDict)
+#                reg = searchDict('R1',regDict)
+#                src = searchDict('PC',regDict)
+#                lines[i]=lines[i].replace(lines[i],instr[1]+reg+src)
+#                line = complete(lines[i],'0')
+#                memInstr.write(line)
+#                memInstr.write('\n')
+#                indexInstr += 1
                 
             i+=1
             val = lines[i]
