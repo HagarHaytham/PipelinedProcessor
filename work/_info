@@ -1,0 +1,304 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dE:/My 3B
+Ed_latch
+Z0 w1545148946
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z3 dE:/My 3B/ARCHProject/PipelinedProcessor
+Z4 8E:/3A/Architecture/project/dflipflop.vhd
+Z5 FE:/3A/Architecture/project/dflipflop.vhd
+l0
+L4
+VETg22YCgB`<egmhE00k3g2
+!s100 lML<;QknEWk<i`4nO<V6H3
+Z6 OV;C;10.5b;63
+32
+Z7 !s110 1556663497
+!i10b 1
+Z8 !s108 1556663496.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/3A/Architecture/project/dflipflop.vhd|
+Z10 !s107 E:/3A/Architecture/project/dflipflop.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
+Abehavioral
+R1
+R2
+DEx4 work 7 d_latch 0 22 ETg22YCgB`<egmhE00k3g2
+l12
+L11
+V=>GKEDnfc[Xm<hkZ5[R3b0
+!s100 4FVn64BMD0Q0;JPR9R[0M0
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Edec3x8
+Z13 w1545149960
+R1
+R2
+R3
+Z14 8E:/3A/Architecture/project/dec_3x8.vhd
+Z15 FE:/3A/Architecture/project/dec_3x8.vhd
+l0
+L4
+Vng0JJCGQB09:MXc>TO<=T1
+!s100 P^NIh4?TPj5TWLP9oP;Go0
+R6
+32
+Z16 !s110 1556720087
+!i10b 1
+Z17 !s108 1556720087.000000
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/3A/Architecture/project/dec_3x8.vhd|
+Z19 !s107 E:/3A/Architecture/project/dec_3x8.vhd|
+!i113 1
+R11
+R12
+Adataflow
+R1
+R2
+DEx4 work 6 dec3x8 0 22 ng0JJCGQB09:MXc>TO<=T1
+l13
+L12
+VIm]ocP1>15T:OLn]J_Zn@2
+!s100 zB_9[oK2A<7lnHV6eISih1
+R6
+32
+R16
+!i10b 1
+R17
+R18
+R19
+!i113 1
+R11
+R12
+Edec4x16
+R0
+R1
+R2
+R3
+Z20 8E:/3A/Architecture/project/dec_4X16.vhd
+Z21 FE:/3A/Architecture/project/dec_4X16.vhd
+l0
+L4
+V<[coCI@Ch8[aAUljVh1fB0
+!s100 Xa5E806?R=T7UanobIPdV3
+R6
+32
+Z22 !s110 1556718714
+!i10b 1
+Z23 !s108 1556718714.000000
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/3A/Architecture/project/dec_4X16.vhd|
+Z25 !s107 E:/3A/Architecture/project/dec_4X16.vhd|
+!i113 1
+R11
+R12
+Adataflow
+R1
+R2
+DEx4 work 7 dec4x16 0 22 <[coCI@Ch8[aAUljVh1fB0
+l13
+L12
+VC0ll6MW;Di51h?EY2PV5k1
+!s100 ^UEYI42on;]66g>eR8[T>3
+R6
+32
+R22
+!i10b 1
+R23
+R24
+R25
+!i113 1
+R11
+R12
+En_reg
+Z26 w1556715819
+R1
+R2
+R3
+Z27 8E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd
+Z28 FE:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd
+l0
+L4
+VkdPfIMiU0<G7E=B>`W;6T1
+!s100 i=RlLd59^c`31k3a1[ji93
+R6
+32
+Z29 !s110 1556715858
+!i10b 1
+Z30 !s108 1556715858.000000
+Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd|
+Z32 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd|
+!i113 1
+R11
+R12
+Amyreg
+R1
+R2
+DEx4 work 5 n_reg 0 22 kdPfIMiU0<G7E=B>`W;6T1
+l16
+L14
+VeZkCVi?6R?zhi^VJb0L<G3
+!s100 mIiF3NmdN[JR7iE5g?]:Z2
+R6
+32
+R29
+!i10b 1
+R30
+R31
+R32
+!i113 1
+R11
+R12
+Astruct
+R1
+R2
+DEx4 work 5 n_reg 0 22 LNDk2ooNz9UzXRamXfGcB1
+l20
+L13
+V94[81KGTCe>hlFlZJda;J1
+!s100 >UBOZ?<hC:Fe>`AzbM?6;3
+R6
+32
+R7
+!i10b 1
+!s108 1556663497.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/3A/Architecture/project/nregister.vhd|
+!s107 E:/3A/Architecture/project/nregister.vhd|
+!i113 1
+R11
+R12
+FE:/3A/Architecture/project/nregister.vhd
+R0
+8E:/3A/Architecture/project/nregister.vhd
+En_tri_buffer
+R0
+R1
+R2
+R3
+Z33 8E:/3A/Architecture/project/ntristate.vhd
+Z34 FE:/3A/Architecture/project/ntristate.vhd
+l0
+L4
+VoZ7mI?Z>IHz5Rz7CGecMK3
+!s100 aEWX:7Bz[coP>76WAA]f43
+R6
+32
+R22
+!i10b 1
+R23
+Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/3A/Architecture/project/ntristate.vhd|
+Z36 !s107 E:/3A/Architecture/project/ntristate.vhd|
+!i113 1
+R11
+R12
+Astruct
+R1
+R2
+DEx4 work 12 n_tri_buffer 0 22 oZ7mI?Z>IHz5Rz7CGecMK3
+l20
+L13
+V]N3hLmK02^5aALd<l9^jM3
+!s100 a[NMIH?^8J6Id;@:97RE12
+R6
+32
+R22
+!i10b 1
+R23
+R35
+R36
+!i113 1
+R11
+R12
+Ereg_file
+Z37 w1556727459
+R1
+R2
+R3
+Z38 8E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd
+Z39 FE:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd
+l0
+L4
+VmcfPPZdfO2G>JAnBPO]1:2
+!s100 cVK28e7R`2R?2aG[?j<oI1
+R6
+32
+Z40 !s110 1556727465
+!i10b 1
+Z41 !s108 1556727465.000000
+Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd|
+Z43 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd|
+!i113 1
+R11
+R12
+Arfile
+R1
+R2
+Z44 DEx4 work 8 reg_file 0 22 mcfPPZdfO2G>JAnBPO]1:2
+l69
+L14
+Vg[b;8Wn^Adb64W8[aH=@Z1
+!s100 bVd[@84c`zjV;3Sjhg@<C1
+R6
+32
+R40
+!i10b 1
+R41
+R42
+R43
+!i113 1
+R11
+R12
+Etri_buffer
+Z45 w1556723415
+R1
+R2
+R3
+Z46 8E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd
+Z47 FE:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd
+l0
+L4
+VL4GIm:JF@Y`Y;=Bj=XE183
+!s100 XJGJ2X^`KP5B5WDe5;Wgf1
+R6
+32
+Z48 !s110 1556723419
+!i10b 1
+Z49 !s108 1556723419.000000
+Z50 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd|
+Z51 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd|
+!i113 1
+R11
+R12
+Amytri
+R1
+R2
+DEx4 work 10 tri_buffer 0 22 L4GIm:JF@Y`Y;=Bj=XE183
+l13
+L11
+VnbFa=cHdN8LSRTK`lEZhb2
+!s100 XTBjaWg^UM9H3HS<c386U1
+R6
+32
+R48
+!i10b 1
+R49
+R50
+R51
+!i113 1
+R11
+R12

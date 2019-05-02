@@ -4,7 +4,7 @@ ENTITY OneOperandALU IS
 	GENERIC (m:integer:=16);
 	PORT(a: IN STD_LOGIC_VECTOR(m-1 DOWNTO 0);
         s : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
-        --flagsIn : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+        flagsIn : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
         c : OUT STD_LOGIC_VECTOR(m-1 DOWNTO 0);
         flagsOut: OUT STD_LOGIC_VECTOR(2 DOWNTO 0)); -- C - N - Z
 END ENTITY OneOperandALU;
@@ -12,7 +12,7 @@ END ENTITY OneOperandALU;
 ARCHITECTURE OneOperandALUArch OF OneOperandALU IS
 
 SIGNAL b,d,e,f,myout :  STD_LOGIC_VECTOR(m-1 DOWNTO 0);
-SIGNAL ccr1 , ccr2 :  STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL ccrSetc,ccrClrc,ccrNot , ccrInc :  STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL carry1,z : STD_LOGIC ;
 COMPONENT MUX8x1 IS
 	GENERIC (m:integer:=16);
@@ -39,12 +39,14 @@ b <= x"0000";
 d <= NOT a ;
 z <= '1' when myout=x"0000"
 else '0';
-ccr1 <='0'&myout(15)&z;
-ccr2 <=carry1&myout(15)&z;
+ccrSetc <= '1' & flagsIn(1 downto 0 );
+ccrClrc <= '0' & flagsIn (1 downto 0);
+ccrNot <=flagsIn(0)&myout(15)&z;
+ccrInc <=carry1&myout(15)&z;
 M1 : MUX8x1 GENERIC MAP(m) PORT MAP(b,b,b,d,f,f,b,b,s,myout);
 M2 : MUX2x1 GENERIC MAP (m) PORT MAP (b,x"FFFE",s(0),e);
 FA : FullAdder GENERIC MAP(m) PORT MAP(a,e,'1',f,carry1);
-CCR : MUX8x1 GENERIC MAP(3) PORT MAP("000","100","000",ccr1,ccr2,ccr2,"000","000",s,flagsOut);
+CCR : MUX8x1 GENERIC MAP(3) PORT MAP(flagsIn,ccrSetc,ccrClrc,ccrNot,ccrInc,ccrInc,flagsIn,flagsIn,s,flagsOut);
 c<=myout;
 END ARCHITECTURE;
 
