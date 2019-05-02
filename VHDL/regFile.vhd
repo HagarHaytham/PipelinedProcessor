@@ -104,6 +104,12 @@ reg7 : n_reg generic map(16) port map(regIn7,regEn7,clk,rst,regOut7);
 process (clk,RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu)
 
 begin
+  if(rst = '1') then
+	src1 <= (others => '0');
+	dst1 <= (others => '0');
+	src2 <= (others => '0');
+	dst2 <= (others => '0');
+  else
 	if(Rsrc1 = WMem ) then
 		src1 <= memData;
 	elsif (Rsrc1 = WAlu ) then
@@ -127,6 +133,7 @@ begin
 	end if;
 
 
+   
 	if(RDst1 = WMem ) then
 		dst1 <= memData;
 	elsif (RDst1 = WAlu ) then
@@ -194,7 +201,7 @@ begin
 	end if;
 
 
-
+   end if;
 end process;
 
 end rFile;

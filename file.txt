@@ -1,0 +1,9 @@
+.ORG 0  
+10
+.ORG 2  
+100
+.ORG 10
+ADD R2 R1
+IN R2        
+IN R3        
+IN R4        
