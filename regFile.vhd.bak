@@ -131,9 +131,9 @@ begin
 	elsif (Rsrc1 = "0111") then
 		src1 <= regOut7;
 	end if;
+   end if;
 
-
-   
+   if(
 	if(RDst1 = WMem ) then
 		dst1 <= memData;
 	elsif (RDst1 = WAlu ) then
@@ -201,7 +201,7 @@ begin
 	end if;
 
 
-   end if;
+
 end process;
 
 end rFile;

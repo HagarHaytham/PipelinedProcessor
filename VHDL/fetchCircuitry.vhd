@@ -71,7 +71,7 @@ BEGIN
 
 	ftchCntrl:	fetchControl PORT MAP(i_clkC, i_rst, i_hzrd, i_brnch, stall, dir, step, sel);
 
-	PC:		circuitPC PORT MAP(i_clkC, i_rst, stall, dir, step, sel, adrsPCI, adrsPCO);
+	PC:		circuitPC PORT MAP(i_clkC, '0', stall, dir, step, sel, adrsPCI, adrsPCO);
 
 	mem:		ram PORT MAP(i_clkM, step, '0', adrsMem(19 downto 0), x"0000", o_inst);
 
