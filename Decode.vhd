@@ -23,6 +23,7 @@ Component reg_file is
 port(	clk,rst,wM,wA : in std_logic ;	
 	RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu : in std_logic_vector(3 downto 0);
 	memData,aluData : in std_logic_vector(15 downto 0);
+	flags : in std_logic_vector(2 downto 0);
 	src1,dst1,src2,dst2 : out std_logic_vector(15 downto 0));	
 	
 End Component;
