@@ -12,7 +12,7 @@ vsim work.fetchcirc
 # Loading work.updwncntr(behavioral)
 # Loading ieee.numeric_std(body)
 # Loading work.ram(syncram)
-mem load -i ram.mem /fetchcirc/mem/ram
+mem load -i ram.mem mem
 add wave *
 force -freeze sim:/fetchcirc/i_rst 1 0
 force -freeze sim:/fetchcirc/i_hzrd 0 0
