@@ -66,7 +66,7 @@ signal regIn5 : std_logic_vector(15 downto 0);
 signal regIn6 : std_logic_vector(15 downto 0);
 signal regIn7 : std_logic_vector(15 downto 0);
 
-signal regEn0,regEn1,regEn2,regEn3,regEn4,regEn5,regEn6,regEn7,fRegEn : std_logic;
+signal regEn0,regEn1,regEn2,regEn3,regEn4,regEn5,regEn6,regEn7 : std_logic;
 
 Begin
 
@@ -93,7 +93,7 @@ regEn4 <= selMem(4) or selAlu(4);
 regEn5 <= selMem(5) or selAlu(5);
 regEn6 <= selMem(6) or selAlu(6);
 regEn7 <= selMem(7) or selAlu(7);
-fRegEn <= selMem(10) or selAlu(10);
+--fRegEn <= selMem(10) or selAlu(10);
 
 reg0 : n_reg generic map(16) port map(regIn0,regEn0,clk,rst,regOut0);
 reg1 : n_reg generic map(16) port map(regIn1,regEn1,clk,rst,regOut1);
@@ -103,7 +103,7 @@ reg4 : n_reg generic map(16) port map(regIn4,regEn4,clk,rst,regOut4);
 reg5 : n_reg generic map(16) port map(regIn5,regEn5,clk,rst,regOut5);
 reg6 : n_reg generic map(16) port map(regIn6,regEn6,clk,rst,regOut6);
 reg7 : n_reg generic map(16) port map(regIn7,regEn7,clk,rst,regOut7);
-flagReg : n_reg generic map(3) port map(flags,fRegEn,clk,rst,fRegOut);
+flagReg : n_reg generic map(3) port map(flags,'1',clk,rst,fRegOut);
 
 process (clk,RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu)
 
@@ -135,7 +135,7 @@ begin
 	elsif (Rsrc1 = "0111") then
 		src1 <= regOut7;
 	elsif (Rsrc1 = "1010") then
-		src1 <= fRegOut;
+		src1 <= "0000000000000" & fRegOut;
 	end if;
 
 
@@ -183,7 +183,7 @@ begin
 	elsif (Rsrc2 = "0111") then
 		src2 <= regOut7;
 	elsif (Rsrc2 = "1010") then
-		src2 <= fRegOut;
+		src2 <= "0000000000000" & fRegOut;
 	end if;
 
 	if(RDst2 = WMem ) then
