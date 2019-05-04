@@ -48,7 +48,7 @@ COMPONENT ram IS
 		word 	: IN std_logic;
 		RW 	: IN std_logic;
 		address	: IN  std_logic_vector(19 DOWNTO 0);
-		datain 	: IN  std_logic_vector(15 DOWNTO 0);
+		datain 	: IN  std_logic_vector(31 DOWNTO 0);
 		data32	: OUT std_logic_vector(31 DOWNTO 0));
 		--data16 : OUT std_logic_vector(15 DOWNTO 0));
 END COMPONENT;
@@ -73,6 +73,6 @@ BEGIN
 
 	PC:		circuitPC PORT MAP(i_clkC, '0', stall, dir, step, sel, adrsPCI, adrsPCO);
 
-	mem:		ram PORT MAP(i_clkM, step, '0', adrsMem(19 downto 0), x"0000", o_inst);
+	mem:		ram PORT MAP(i_clkM, step, '0', adrsMem(19 downto 0), x"00000000", o_inst);
 
 END ARCHITECTURE;
