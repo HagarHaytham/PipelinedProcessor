@@ -1,4 +1,3 @@
-
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_unsigned.ALL;
@@ -10,7 +9,7 @@ ENTITY ram IS
 		word  : IN std_logic; 				-- 0-> OneWord, 1-> TwoWords
 		RW  : IN std_logic; 				-- 0->read, 1->write
 		address : IN  std_logic_vector(19 DOWNTO 0);	-- 20bits addr
-		datain  : IN  std_logic_vector(15 DOWNTO 0);	-- if write needed
+		datain  : IN  std_logic_vector(31 DOWNTO 0);	-- if write needed
 		data32 : OUT std_logic_vector(31 DOWNTO 0));	-- data Out 32bit if word=0, 16bit if word=1
 		
 END ENTITY ram;
@@ -28,7 +27,11 @@ ARCHITECTURE syncram OF ram IS
 			BEGIN
 				IF rising_edge(clk) THEN  
 					IF RW = '1' THEN
-						ram(to_integer(unsigned(address))) <= datain;
+					     ram(to_integer(unsigned(address))) <= datain(15 downto 0);
+					     IF word = '1' THEN
+						ram(to_integer(unsigned(address + '1'))) <= datain(31 downto 16);
+					     END IF;
+						
 					ELSE IF word = '0' THEN
 						data32(15 downto 0) <= ram(to_integer(unsigned(address)));
 						data32(31 downto 16) <= X"0000";
