@@ -7,6 +7,7 @@ port(	clk,rst,wM,wA : in std_logic ;
 	RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu : in std_logic_vector(3 downto 0);
 	memData,aluData : in std_logic_vector(15 downto 0);
 	flags : in std_logic_vector(2 downto 0);
+	fROut : out std_logic_vector(2 downto 0);
 	src1,dst1,src2,dst2 : out std_logic_vector(15 downto 0));	
 	
 End Entity;
@@ -104,6 +105,7 @@ reg5 : n_reg generic map(16) port map(regIn5,regEn5,clk,rst,regOut5);
 reg6 : n_reg generic map(16) port map(regIn6,regEn6,clk,rst,regOut6);
 reg7 : n_reg generic map(16) port map(regIn7,regEn7,clk,rst,regOut7);
 flagReg : n_reg generic map(3) port map(flags,'1',clk,rst,fRegOut);
+
 
 process (clk,RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu)
 
@@ -211,5 +213,5 @@ begin
 
    end if;
 end process;
-
+fROut <= fRegOut;
 end rFile;
