@@ -95,3 +95,6 @@ force -freeze sim:/alu/b 0000000000000001 0
 force -freeze sim:/alu/s 01101 0
 run
 
+#not alu operation
+force -freeze sim:/alu/s 11101 0
+run
