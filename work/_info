@@ -126,7 +126,7 @@ R25
 R11
 R12
 Edecode
-Z26 w1557229762
+Z26 w1557232037
 R1
 R2
 R3
@@ -138,9 +138,9 @@ VCch6;M;lhin<5244ak3@U2
 !s100 9o?oaoQgS84dCIKAYO6jX2
 R6
 32
-Z29 !s110 1557229764
+Z29 !s110 1557232050
 !i10b 1
-Z30 !s108 1557229764.000000
+Z30 !s108 1557232049.000000
 Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:\My 3B\ARCHProject\PipelinedProcessor\Decode.vhd|
 Z32 !s107 E:\My 3B\ARCHProject\PipelinedProcessor\Decode.vhd|
 !i113 1
@@ -149,11 +149,11 @@ R12
 Adec
 R1
 R2
-DEx4 work 6 decode 0 22 Cch6;M;lhin<5244ak3@U2
+Z33 DEx4 work 6 decode 0 22 Cch6;M;lhin<5244ak3@U2
 l37
 L22
-Z33 V2H9`[OBNDo0U12W9JQLUi1
-Z34 !s100 ^c^fWKGVS`J2_ZWoFV1Un3
+V4Ik^_<`mSm2@KW3?Vhi=72
+!s100 9@=B5>NjW[Ne38BBGG6@73
 R6
 32
 R29
@@ -165,12 +165,12 @@ R32
 R11
 R12
 En_reg
-Z35 w1556715819
+Z34 w1556715819
 R1
 R2
 R3
-Z36 8E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd
-Z37 FE:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd
+Z35 8E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd
+Z36 FE:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd
 l0
 L4
 VkdPfIMiU0<G7E=B>`W;6T1
@@ -180,8 +180,8 @@ R6
 R22
 !i10b 1
 R23
-Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd|
-Z39 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd|
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd|
+Z38 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/nBitReg.vhd|
 !i113 1
 R11
 R12
@@ -198,8 +198,8 @@ R6
 R22
 !i10b 1
 R23
+R37
 R38
-R39
 !i113 1
 R11
 R12
@@ -229,19 +229,19 @@ R0
 R1
 R2
 R3
-Z40 8E:/3A/Architecture/project/ntristate.vhd
-Z41 FE:/3A/Architecture/project/ntristate.vhd
+Z39 8E:/3A/Architecture/project/ntristate.vhd
+Z40 FE:/3A/Architecture/project/ntristate.vhd
 l0
 L4
 VoZ7mI?Z>IHz5Rz7CGecMK3
 !s100 aEWX:7Bz[coP>76WAA]f43
 R6
 32
-Z42 !s110 1556718714
+Z41 !s110 1556718714
 !i10b 1
-Z43 !s108 1556718714.000000
-Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/3A/Architecture/project/ntristate.vhd|
-Z45 !s107 E:/3A/Architecture/project/ntristate.vhd|
+Z42 !s108 1556718714.000000
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/3A/Architecture/project/ntristate.vhd|
+Z44 !s107 E:/3A/Architecture/project/ntristate.vhd|
 !i113 1
 R11
 R12
@@ -255,32 +255,32 @@ V]N3hLmK02^5aALd<l9^jM3
 !s100 a[NMIH?^8J6Id;@:97RE12
 R6
 32
-R42
+R41
 !i10b 1
+R42
 R43
 R44
-R45
 !i113 1
 R11
 R12
 Ereg_file
-Z46 w1557058531
+Z45 w1557058531
 R1
 R2
 R3
-Z47 8E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd
-Z48 FE:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd
+Z46 8E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd
+Z47 FE:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd
 l0
 L4
 V;MA:QBILKb4_4TmQZ9?KS1
 !s100 idPNgObi1^el5C_TnAIFT3
 R6
 32
-Z49 !s110 1557058534
+Z48 !s110 1557058534
 !i10b 1
-Z50 !s108 1557058534.000000
-Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd|
-Z52 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd|
+Z49 !s108 1557058534.000000
+Z50 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd|
+Z51 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/regFile.vhd|
 !i113 1
 R11
 R12
@@ -294,32 +294,32 @@ VUIE@=k?dz[?AhD[EAkjNP0
 !s100 T2?bR_BI:>aZb9J5=K:?H1
 R6
 32
-R49
+R48
 !i10b 1
+R49
 R50
 R51
-R52
 !i113 1
 R11
 R12
 Etri_buffer
-Z53 w1556723415
+Z52 w1556723415
 R1
 R2
 R3
-Z54 8E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd
-Z55 FE:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd
+Z53 8E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd
+Z54 FE:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd
 l0
 L4
 VL4GIm:JF@Y`Y;=Bj=XE183
 !s100 XJGJ2X^`KP5B5WDe5;Wgf1
 R6
 32
-Z56 !s110 1556723419
+Z55 !s110 1556723419
 !i10b 1
-Z57 !s108 1556723419.000000
-Z58 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd|
-Z59 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd|
+Z56 !s108 1556723419.000000
+Z57 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd|
+Z58 !s107 E:/My 3B/ARCHProject/PipelinedProcessor/tristate.vhd|
 !i113 1
 R11
 R12
@@ -333,11 +333,11 @@ VnbFa=cHdN8LSRTK`lEZhb2
 !s100 XTBjaWg^UM9H3HS<c386U1
 R6
 32
-R56
+R55
 !i10b 1
+R56
 R57
 R58
-R59
 !i113 1
 R11
 R12
