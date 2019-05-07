@@ -46,7 +46,8 @@ COMPONENT  decode IS
 		opcode1	:	OUT	std_logic_vector(4 downto 0);
 		opcode2	:	OUT	std_logic_vector(4 downto 0);
 		dst1	:	OUT	std_logic_vector(3 downto 0);
-		dst2	:	OUT	std_logic_vector(3 downto 0)
+		dst2	:	OUT	std_logic_vector(3 downto 0);
+		fRegOut	:	OUT	std_logic_vector(2 downto 0)
 	);	
 END COMPONENT;
 
@@ -124,7 +125,7 @@ BEGIN
 	dcd:	decode PORT MAP(outFDBuf, i_clkC, i_rst, outMWBuf(36), outAWBuf(20),
 				outMWBuf(35 downto 32), outAWBuf(19 downto 16), flagAD, outMWBuf(15 downto 0), outAWBuf(15 downto 0),
 				inDMBuf(41), inDABuf(41), inDABuf(31 downto 16), inDABuf(15 downto 0), inDMBuf(31 downto 16),
-				inDMBuf(15 downto 0), inDABuf(40 downto 36), inDMBuf(40 downto 36), inDABuf(35 downto 32), inDMBuf(35 downto 32));
+				inDMBuf(15 downto 0), inDABuf(40 downto 36), inDMBuf(40 downto 36), inDABuf(35 downto 32), inDMBuf(35 downto 32), flagDA);
 
 	--this buffer conneccts decode with ALU execution, it's 38-bit
 	--1 bit travels all the way to writeback buffer to indicate if a writeback is required
