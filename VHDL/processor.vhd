@@ -159,8 +159,9 @@ BEGIN
 	mem:	dataMemCirc PORT MAP(i_clkC, i_clkM, i_rst, outDMBuf(40 downto 36), outDMBuf(35 downto 32), adrsDtaM, dataM, inMWBuf(31 downto 0));
 	--its connections
 	adrsDtaM <= "00000000000000000000"	WHEN i_rst = '1'
-	ELSE "0000" & outDMBuf(31 downto 16)	WHEN i_rst = '0' and outDMBuf(40 downto 36) = "10100"
-	ELSE "0000" & outDMBuf(15 downto 0);
+	ELSE "0000" & outDMBuf(15 downto 0)	WHEN i_rst = '0'; --and outDMBuf(40 downto 36) = "10100"
+--	ELSE "0000" & outDMBuf(15 downto 0);
+	dataM <= x"0000" & outDMBuf(31 downto 16);
 
 	--this buffer conneccts memory with writeback, it's 21-bit
 	--1 bit for writeback
