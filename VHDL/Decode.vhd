@@ -41,55 +41,55 @@ process(inst)
 begin
 
 -- source from one operand ALu ,2 operand ALU , dst of one operand ALU
-
-if ((inst(31 downto 30) = "00") or (inst(31 downto 30) = "01")) then
-
-	sAdd1 <= inst(26 downto 23);
-	dst1 <= inst(26 downto 23);
-elsif ((inst(15 downto 14) = "00") or (inst(15 downto 14) = "01")) then  
+if ((inst(15 downto 14) = "00") or (inst(15 downto 14) = "01")) then  
 	
 	sAdd1 <= inst(10 downto 7);
 	dst1 <= inst(10 downto 7);
+
+elsif ((inst(31 downto 30) = "00") or (inst(31 downto 30) = "01")) then
+
+	sAdd1 <= inst(26 downto 23);
+	dst1 <= inst(26 downto 23);
 	
 end if;
 	
 -- dst from 2 operand ALU 
-if ((inst(31 downto 30) = "01")) then 
-
-	dAdd1 <= inst(22 downto 19);
-	dst1 <= inst(22 downto 19);
-elsif ((inst(15 downto 14) = "01")) then
+if ((inst(15 downto 14) = "01")) then
 
 	dAdd1 <= inst(6 downto 3);
 	dst1 <= inst(6 downto 3);
+elsif ((inst(31 downto 30) = "01")) then 
+
+	dAdd1 <= inst(22 downto 19);
+	dst1 <= inst(22 downto 19);
+
 end if;
 
 
 -- memory instr or jumps
-if ((inst(31 downto 30) = "10")  or (inst(31 downto 30) = "11")) then
-	sAdd2 <= inst(26 downto 23);
-	dst2 <= inst(26 downto 23);
-elsif ((inst(15 downto 14) = "10") or (inst(15 downto 14) = "11") ) then
+if ((inst(15 downto 14) = "10") or (inst(15 downto 14) = "11") ) then
 	sAdd2 <= inst(10 downto 7);
 	dst2 <= inst(10  downto 7);
+elsif ((inst(31 downto 30) = "10")  or (inst(31 downto 30) = "11")) then
+	sAdd2 <= inst(26 downto 23);
+	dst2 <= inst(26 downto 23);
+
 end if;
 
 -- instr STD
-if ((inst(31 downto 27) = "10100")) then
-	dAdd2 <= inst(22 downto 19);
-	--dst2 <= inst(22 downto 19);  we dont need dst there is no wb
-elsif ( (inst(15 downto 11) = "10100")) then
+if ( (inst(15 downto 11) = "10100")) then
 	dAdd2 <= inst(6 downto 3);
-	--dst2 <= inst(6 downto 3);    we dont need dst there is no wb
+elsif ((inst(31 downto 27) = "10100")) then
+	dAdd2 <= inst(22 downto 19);
 end if;
 
 -- instr LDD
-if (inst(31 downto 27) = "10011") then
-	dAdd2 <= inst(26 downto 23);
-	dst2 <= inst(22 downto 19);
-elsif (inst (15 downto 11) = "10011") then
+if (inst (15 downto 11) = "10011") then
 	dAdd2 <= inst(10 downto 7);
 	dst2 <= inst(6 downto 3);
+elsif (inst(31 downto 27) = "10011") then
+	dAdd2 <= inst(26 downto 23);
+	dst2 <= inst(22 downto 19);
 end if;
 
 -- signal that detect this instr need wb
@@ -106,18 +106,19 @@ else
 end if;
 
 -- opcode of ALU instr
-if ((inst(31 downto 30) = "00") or (inst(31 downto 30) = "01") or (inst(31 downto 27) = "11000") or (inst(31 downto 27) = "11001") or (inst(31 downto 27) = "11010") or (inst(31 downto 27) = "11011")) then 
-	opcode1 <= inst(31 downto 27);
 
-elsif ((inst(15 downto 14) = "00") or (inst(15 downto 14) = "01") or (inst(15 downto 11) = "11000") or (inst(15 downto 11) = "11001") or (inst(15 downto 11) = "11010") or (inst(15 downto 11) = "11011")) then
+if ((inst(15 downto 14) = "00") or (inst(15 downto 14) = "01") or (inst(15 downto 11) = "11000") or (inst(15 downto 11) = "11001") or (inst(15 downto 11) = "11010") or (inst(15 downto 11) = "11011")) then
 	opcode1 <= inst(15 downto 11);
+elsif ((inst(31 downto 30) = "00") or (inst(31 downto 30) = "01") or (inst(31 downto 27) = "11000") or (inst(31 downto 27) = "11001") or (inst(31 downto 27) = "11010") or (inst(31 downto 27) = "11011")) then 
+	opcode1 <= inst(31 downto 27);
 end if;
 
 -- opcode of Memory instr
-if ((inst(31 downto 30) = "10") or (inst(31 downto 27) = "11100") or (inst(31 downto 27) = "11101") or (inst(31 downto 27) = "11110")) then
-	opcode2 <= inst(31 downto 27);
-elsif ((inst(15 downto 14) = "10") or (inst(15 downto 11 )= "11100") or (inst(15 downto 11) = "11101") or (inst(15 downto 11) = "11110")) then
+if ((inst(15 downto 14) = "10") or (inst(15 downto 11 )= "11100") or (inst(15 downto 11) = "11101") or (inst(15 downto 11) = "11110")) then
 	opcode2 <= inst(15 downto 11);
+elsif ((inst(31 downto 30) = "10") or (inst(31 downto 27) = "11100") or (inst(31 downto 27) = "11101") or (inst(31 downto 27) = "11110")) then
+	opcode2 <= inst(31 downto 27);
+
 end if;
 	
 if(wMAdd = "1010") then 
