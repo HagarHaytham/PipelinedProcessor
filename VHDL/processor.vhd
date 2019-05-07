@@ -85,6 +85,9 @@ GENERIC (n:integer:=16);
 	);
 END COMPONENT;
 
+
+
+
 SIGNAL hzrd	:	std_logic;	--signal to detect hazard
 SIGNAL brnch	:	std_logic;	--signal to indicate branch
 SIGNAL instAdd	:	std_logic_vector(31 downto 0);	--Address lines for instruction memory

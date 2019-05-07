@@ -1,7 +1,7 @@
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
 ENTITY RAWDetection IS
-    port(instr0,instr1 : in STD_LOGIC_VECTOR(15 DOWNTO 0); 
+    port(packet0,packet1 : IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
     -- instr0 is the instruction from D/E buffer (the upper part)
     -- instr1 is the instruction from F/D buffer (the lower part)
         ETE : out STD_LOGIC);
@@ -19,7 +19,7 @@ begin
 
     process (instr0,instr1)
         begin
-            -- instr0and instr1 are 2 ALU instructions and instr0 has WB 
+            -- instr0 and instr1 are 2 ALU instructions and instr0 has WB 
             -- instr0 is any ALU operation other than NOP,SETC,CLRC 
             -- NOP '00000'
             -- SETC '00001'
