@@ -153,9 +153,9 @@ def opr2(opp1,opp2,instr):
         return None
     Lines += op1
     if(opp2.isdigit()):
-        Lines = complete(Lines,opp1)
+        #Lines = complete(Lines,opp1)
         a =bin(int(opp2,16))
-        Lines += '\n'+a[2:].zfill(16)
+        Lines += a[2:].zfill(4)
         #Lines += '\n'+opp2
     else:
         op2 = searchDict(opp2,regDict)
@@ -209,7 +209,7 @@ def colon(file):
         count +=1
 ##############################################    
 #main
-inputFile = open("Testcases/new/Memory.asm",'r')
+inputFile = open("Testcases/new/TwoOperand.asm",'r')
 lines = inputFile.readlines()
 inputFile.close()
 #remove comments and empty lines
