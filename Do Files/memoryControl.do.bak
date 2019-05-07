@@ -21,6 +21,7 @@ run
 force -freeze sim:/memcntrl/i_dst 4'h8 0
 run
 run
+# Compile of regFile.vhd was successful.
 force -freeze sim:/memcntrl/i_dst 4'h9 0
 force -freeze sim:/memcntrl/i_opcd 5'h14 0
 run
