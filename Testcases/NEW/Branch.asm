@@ -11,17 +11,28 @@
 
 .ORG 10
 in R1     #R1=30
+NOP
+
 in R2     #R2=50
+NOP
+
 in R3     #R3=100
+NOP
+
 in R4     #R4=300
+NOP
+
+NOP       #DATA
 Push R4   #sp=FFFFFFFE, M[FFFFFFFF]=300
-JMP R1 
+
+JMP R1    
+
 INC R1	  # this statement shouldn't be executed,
  
 #check flag fowarding  
 .ORG 30
 AND R1,R5   #R5=0 , Z = 1
-            #try interrupt here
+#try interrupt here
 JZ  R2      #Jump taken, Z = 0
 SETC        # this statement shouldn't be executed, C-->1
 
