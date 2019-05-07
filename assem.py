@@ -14,20 +14,21 @@ def comment(lines):
     #print(lines)
     LINES = []
     for i in range(len( lines)):
-        #s = lines[i].split()
         
         if(len(lines[i])>0):
             if(lines[i][0] == '#' or lines[i][0] == '\n'):
-               #print(lines[i][0])
                pass
             else:
                 foundIndex=lines[i].find('#')
+                coma = lines[i].find(',')
+                if(coma != -1):
+                    lines[i]=lines[i].replace(',',' ')
                 #Empty = lines[i].empty()
                 if(foundIndex!=-1 ):
                     lines[i]=lines[i].replace(lines[i][foundIndex:len(lines[i])],'')
-                    LINES.append(lines[i]+'\n')
+                    LINES.append(lines[i].upper()+'\n')
                 else: 
-                    LINES.append(lines[i])
+                    LINES.append(lines[i].upper())
     return LINES
                 
 
@@ -42,17 +43,6 @@ def ORG(lines):
         addr = lines[i].split()
         instrWithoutORG = searchDict(addr[0],instDict)
         if(addr[0] == '.ORG' ):
-            
-            #if(addr[1] =='0'):
-#                instr = searchDict('LDD',instDict)
-#                reg = searchDict('R1',regDict)
-#                src = searchDict('PC',regDict)
-#                lines[i]=lines[i].replace(lines[i],instr[1]+reg+src)
-#                line = complete(lines[i],'0')
-#                memInstr.write(line)
-#                memInstr.write('\n')
-#                indexInstr += 1
-                
             i+=1
             val = lines[i]
             Str = val.split()
@@ -75,8 +65,6 @@ def ORG(lines):
                     memInstr.write('0000000000000000')
                     memInstr.write('\n')
                     indexInstr += 1
-                
-#                getInstr(instr,Str)#define which instr
                 
         elif(instrWithoutORG == -1):
             pass
@@ -209,12 +197,24 @@ def branch(opp1,instr):
     return res
 
 ##############################################
+def colon(file):
+    inf = open(file,'r')
+    read = inf.readlines()
+    inf.close()
+    wr = open(file,'w')
+    count = 0
+    for i in range(len( read)):
+        read[i] = str(count) + ' : ' + read[i]
+        wr.write(read[i]+'\n')
+        count +=1
+##############################################    
 #main
-inputFile = open("file.txt",'r')
+inputFile = open("Testcases/new/TwoOperand.asm",'r')
 lines = inputFile.readlines()
 inputFile.close()
 #remove comments and empty lines
 lines = comment(lines)
+#print(lines)
 memData = open("data.txt",'w')
 memInstr = open("Instr.txt",'w')
       
@@ -223,6 +223,9 @@ ORG(lines)
 inputFile.close()
 memData.close()
 memInstr.close()
+
+colon('Instr.txt')
+colon('data.txt')
 
 
 
