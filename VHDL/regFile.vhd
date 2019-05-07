@@ -106,6 +106,7 @@ reg6 : n_reg generic map(16) port map(regIn6,regEn6,clk,rst,regOut6);
 reg7 : n_reg generic map(16) port map(regIn7,regEn7,clk,rst,regOut7);
 flagReg : n_reg generic map(3) port map(flags,'1',clk,rst,fRegOut);
 
+
 process (clk,RSrc1,RDst1,RSrc2,RDst2,WMem,WAlu)
 
 begin
