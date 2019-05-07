@@ -205,11 +205,11 @@ def colon(file):
     count = 0
     for i in range(len( read)):
         read[i] = str(count) + ' : ' + read[i]
-        wr.write(read[i]+'\n')
+        wr.write(read[i])
         count +=1
 ##############################################    
 #main
-inputFile = open("Testcases/new/TwoOperand.asm",'r')
+inputFile = open("Testcases/new/Memory.asm",'r')
 lines = inputFile.readlines()
 inputFile.close()
 #remove comments and empty lines
