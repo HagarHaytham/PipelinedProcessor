@@ -207,6 +207,9 @@ def colon(file):
         read[i] = '\t' + str(count) + ': ' + read[i]
         wr.write(read[i])
         count +=1
+    
+    for i in range(count , 1048576):
+        wr.write('0000000000000000\n')
 ##############################################    
 #main
 inputFile = open("Testcases/NEW/Branch.asm",'r')
