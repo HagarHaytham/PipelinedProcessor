@@ -99,3 +99,13 @@ run
 run
 run
 run
+force -freeze sim:/processor/i_rst 1 0
+mem load -filltype value -filldata 1000000010001000 -fillradix binary /processor/ftch/mem/ram(0)
+run
+run
+run
+run
+run
+run
+run
+run

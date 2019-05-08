@@ -56,11 +56,19 @@ if (rst = '1') then
 	sAdd2 <= (others => '0');
 	dAdd2 <= (others => '0');
 	flags <= (others => '0');
-
 	
 else
 	
-	if(((inst(31 downto 30) = inst(15 downto 14)) or ((inst(31 downto 30) = "00") and (inst(15 downto 14) = "01")) or ((inst(31 downto 30) = "01") and (inst(15 downto 14) = "00")) or ((inst(31 downto 30) = "10") and (inst(15 downto 14) = "11")) or ((inst(31 downto 30) = "11") and (inst(15 downto 14) = "10"))) and sH = '0') then
+	if(inst(31 downto 27) = "00000" and inst(15 downto 11) = "00000") then
+		stH <= '0';
+		wM <= '0';
+		opcode2 <= (others => '0');
+		src2 <= (others => '0');
+		dst2 <= (others => '0');
+		sAdd2 <= (others => '0');
+		dAdd2 <= (others => '0');
+	
+	elsif(((inst(31 downto 30) = inst(15 downto 14)) or ((inst(31 downto 30) = "00") and (inst(15 downto 14) = "01")) or ((inst(31 downto 30) = "01") and (inst(15 downto 14) = "00")) or ((inst(31 downto 30) = "10") and (inst(15 downto 14) = "11")) or ((inst(31 downto 30) = "11") and (inst(15 downto 14) = "10"))) and sH = '0') then
 		stH <= '1';
 
 		if((inst(15 downto 14) = "00") or (inst(15 downto 14) = "01")) then
