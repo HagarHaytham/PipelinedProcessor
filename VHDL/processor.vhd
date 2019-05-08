@@ -21,6 +21,7 @@ COMPONENT fetchCirc IS
 		i_hzrd	:	IN	std_logic;	--A hazard is detected
 		i_brnch	:	IN	std_logic;	--A branch is performed, to enable load
 		i_adrs	:	IN	std_logic_vector(31 downto 0);	--Input address to PC, used with load
+		o_hzd	:	OUT	std_logic;
 		o_inst	:	OUT	std_logic_vector(31 downto 0)	--Output instruction package
 	);
 END COMPONENT;
@@ -32,6 +33,7 @@ COMPONENT  decode IS
 		rst	:	IN	std_logic;
 		wMem	:	IN	std_logic;
 		wAlu	:	IN	std_logic;
+		sH	:	IN	std_logic;
 		wMAdd	:	IN	std_logic_vector(3 downto 0);
 		wAAdd	:	IN	std_logic_vector(3 downto 0);
 		fData	:	IN	std_logic_vector(2 downto 0);
@@ -39,6 +41,7 @@ COMPONENT  decode IS
 		aData	:	IN	std_logic_vector(15 downto 0);
 		wM	:	OUT	std_logic;
 		wA	:	OUT	std_logic;
+		stH	:	OUT	std_logic;
 		s1	:	OUT	std_logic_vector(15 downto 0);
 		d1	:	OUT	std_logic_vector(15 downto 0);
 		s2	:	OUT	std_logic_vector(15 downto 0);
@@ -96,8 +99,13 @@ END COMPONENT LoadStoreDetection;
 
 
 SIGNAL hzrd	:	std_logic;	--signal to detect hazard
+SIGNAL lateHz	:	std_logic;
 SIGNAL brnch	:	std_logic;	--signal to indicate branch
 SIGNAL instAdd	:	std_logic_vector(31 downto 0);	--Address lines for instruction memory
+
+--Decode hazards
+SIGNAL outDInF	:	std_logic;
+SIGNAL outFInD	:	std_logic;
 
 --Buffers signals
 SIGNAL inFDBuf	:	std_logic_vector(31 downto 0);	--Input of fetch decode buffer, Instruction words fetched from instruction memory
@@ -135,16 +143,16 @@ BEGIN
 	instAdd <= outMWBuf(31 downto 0)	WHEN i_rst = '1'
 	ELSE x"00000000"	WHEN i_rst = '0';
 
-	ftch:	fetchCirc PORT MAP(i_clkC, i_clkM, i_rst, hzrd, brnch, instAdd, inFDBuf);
+	ftch:	fetchCirc PORT MAP(i_clkC, i_clkM, i_rst, '0', brnch, instAdd, outFInD, inFDBuf);
 
 	--this buffer connects fetch with decode, it's 32-bit
 	--16 bits for each instruction
 	bufFD:	nReg GENERIC MAP(32) PORT MAP(inFDBuf, bufEn, i_rst, clkBuf, outFDBuf);
 
 	--Decode Module
-	dcd:	decode PORT MAP(outFDBuf, i_clkC, i_rst, outMWBuf(36), outAWBuf(20),
+	dcd:	decode PORT MAP(outFDBuf, i_clkC, i_rst, outMWBuf(36), outAWBuf(20), outFInD,
 				outMWBuf(35 downto 32), outAWBuf(19 downto 16), flagAD, outMWBuf(15 downto 0), outAWBuf(15 downto 0),
-				inDMBuf(41), inDABuf(41), inDABuf(31 downto 16), inDABuf(15 downto 0), inDMBuf(31 downto 16),
+				inDMBuf(41), inDABuf(41), outDInF, inDABuf(31 downto 16), inDABuf(15 downto 0), inDMBuf(31 downto 16),
 				inDMBuf(15 downto 0), inDABuf(40 downto 36), inDMBuf(40 downto 36), src1Dec, src2Dec,
 				inDABuf(35 downto 32), inDMBuf(35 downto 32), flagDA);
 

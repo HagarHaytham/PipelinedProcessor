@@ -10,6 +10,7 @@ ENTITY fetchCirc IS
 		i_hzrd	:	IN	std_logic;	--A hazard is detected
 		i_brnch	:	IN	std_logic;	--A branch is performed, to enable load
 		i_adrs	:	IN	std_logic_vector(31 downto 0);	--Input address to PC, used with load
+		o_hzd	:	OUT	std_logic;
 		o_inst	:	OUT	std_logic_vector(31 downto 0)	--Output instruction package
 	);
 END ENTITY;
@@ -57,6 +58,7 @@ SIGNAL stall	:	std_logic;
 SIGNAL dir	:	std_logic;
 SIGNAL step	:	std_logic;
 SIGNAL sel	:	std_logic;
+SIGNAL hzd	:	std_logic;
 SIGNAL adrsPCI	:	std_logic_vector(31 downto 0);
 SIGNAL adrsPCO	:	std_logic_vector(31 downto 0);
 SIGNAL adrsMem	:	std_logic_vector(31 downto 0);
@@ -68,6 +70,21 @@ BEGIN
 
 	adrsPCI <= i_adrs + 2	WHEN i_brnch = '1'
 	ELSE i_adrs		WHEN i_brnch = '0';
+
+	PROCESS(i_clkC,i_rst)
+	BEGIN
+		IF(i_rst = '1')	THEN
+			o_hzd <= '0';
+		ELSIF rising_edge(i_clkC)	THEN
+			IF(i_hzrd <= '1' and hzd <= '0')	THEN
+				hzd <= '1';
+			ELSE
+				o_hzd <= '0';
+			END IF;
+		END IF;
+	END PROCESS;
+
+	o_hzd <= '0';
 
 	ftchCntrl:	fetchControl PORT MAP(i_clkC, i_rst, i_hzrd, i_brnch, stall, dir, step, sel);
 
