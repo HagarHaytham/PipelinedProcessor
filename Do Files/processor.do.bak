@@ -47,7 +47,7 @@ mem load -filltype value -filldata 0000000000000000 -fillradix binary /processor
 mem load -filltype value -filldata 1010000000001000 -fillradix binary /processor/ftch/mem/ram(6)
 mem load -filltype value -filldata 0000000000000000 -fillradix binary /processor/ftch/mem/ram(7)
 mem load -filltype value -filldata 1111 -fillradix hexadecimal /processor/mem/mem/ram(0)
-mem load -filltype value -filldata 0000 -fillradix hexadecimal /processor/mem/mem/ram(0
+mem load -filltype value -filldata 0000 -fillradix hexadecimal /processor/mem/mem/ram(1)
 force -freeze sim:/processor/i_rst 1 0
 force -freeze sim:/processor/i_input 0 0
 force -freeze sim:/processor/i_clkC 1 10, 0 {60 ps} -r 100

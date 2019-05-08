@@ -84,3 +84,18 @@ run
 run
 run
 run
+mem load -filltype value -filldata 0000 -fillradix hexadecimal /processor/mem/mem/ram(1)
+force -freeze sim:/processor/i_rst 1 0
+run
+force -freeze sim:/processor/i_rst 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
