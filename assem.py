@@ -207,16 +207,21 @@ def colon(file):
         read[i] = str(count) + ': ' + read[i]
         wr.write(read[i])
         count +=1
+        
+    j = 0
+    for i in range(count , 1048577):
+        wr.write('\t' + str(count+j) + ': ' +'0000000000000000\n')
+        j+=1
 ##############################################    
 #main
-inputFile = open("Testcases/new/Branch.asm",'r')
+inputFile = open("Testcases/NEW/Memory.asm",'r')
 lines = inputFile.readlines()
 inputFile.close()
 #remove comments and empty lines
 lines = comment(lines)
 #print(lines)
-memData = open("Testcases/new/BranchData.mem",'w')
-memInstr = open("Testcases/new/BranchInstr.mem",'w')
+memData = open("Testcases/NEW/MemoryData.mem",'w')
+memInstr = open("Testcases/NEW/MemoryInstr.mem",'w')
       
 ORG(lines)
 
@@ -224,8 +229,8 @@ inputFile.close()
 memData.close()
 memInstr.close()
 
-colon('Testcases/new/BranchInstr.mem')
-colon('Testcases/new/BranchData.mem')
+colon('Testcases/NEW/MemoryInstr.mem')
+colon('Testcases/NEW/MemoryData.mem')
 
 
 
