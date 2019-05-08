@@ -143,7 +143,7 @@ BEGIN
 	instAdd <= outMWBuf(31 downto 0)	WHEN i_rst = '1'
 	ELSE x"00000000"	WHEN i_rst = '0';
 
-	ftch:	fetchCirc PORT MAP(i_clkC, i_clkM, i_rst, '0', brnch, instAdd, outFInD, inFDBuf);
+	ftch:	fetchCirc PORT MAP(i_clkC, i_clkM, i_rst, outDInF, brnch, instAdd, outFInD, inFDBuf);
 
 	--this buffer connects fetch with decode, it's 32-bit
 	--16 bits for each instruction
