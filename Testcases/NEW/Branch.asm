@@ -9,7 +9,7 @@
 .ORG 2  #this is the interrupt address
 100
 
-.ORG 10
+.ORG 0
 in R1     #R1=30
 NOP
 NOP
@@ -31,14 +31,14 @@ Push R4   #sp=FFFFFFFE, M[FFFFFFFF]=300
 INC R1    # this statement shouldn't be executed,
 
 #check flag fowarding  
-.ORG 30
+
 AND R1,R5   #R5=0 , Z = 1
 #try interrupt here
 #JZ  R2      #Jump taken, Z = 0
 SETC        # this statement shouldn't be executed, C-->1
 
 #check on flag updated on jump
-.ORG 50
+
 #JZ R1      #shouldn't be taken
 #JC R3      #Jump Not taken
 
@@ -52,14 +52,14 @@ NOP
 NOP
 NOP
 
-.ORG 100
+
 CLRC
 AND R0,R0    #N=0,Z=1
 out R6
 rti
 
 #check on load use
-.ORG 200
+
 SETC      #C-->1
 POP R6     #R6=300, SP=FFFFFFFF
 NOP
@@ -73,7 +73,7 @@ NOP
 NOP
 NOP
 
-.ORG 300
+
 Add R3,R6 #R6=400
 NOP
 NOP
@@ -83,6 +83,6 @@ Add R1,R2 #R1=80, C->0,N=0, Z=0
 ret
 SetC           #this shouldnot be executed
 
-.ORG 500
+
 NOP
 NOP
