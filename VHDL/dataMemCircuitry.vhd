@@ -23,7 +23,8 @@ COMPONENT memCntrl IS
 		i_opcd	:	IN	std_logic_vector(4 downto 0);
 		i_dst	:	IN	std_logic_vector(3 downto 0);
 		o_RW	:	OUT	std_logic;	--Read/Write signal, 0 => read, 1 => write
-		o_word	:	OUT	std_logic	--word or 2 words, 0 => one, 1 => two
+		o_word	:	OUT	std_logic;	--word or 2 words, 0 => one, 1 => two
+		o_spAdrs:	OUT	std_logic_vector(31 downto 0)
 	);
 END COMPONENT;
 
@@ -39,11 +40,15 @@ END COMPONENT;
 
 SIGNAL sRW	:	std_logic;
 SIGNAL word	:	std_logic;
+SIGNAL adrs	:	std_logic_vector(19 downto 0);
+SIGNAL spAdrs	:	std_logic_vector(31 downto 0);
 
 BEGIN
-	
-	cntrl:	memCntrl PORT MAP(i_clkC, i_rst, i_opcd, i_dst, sRW, word);
+	adrs <= spAdrs(19 downto 0)	WHEN i_opcd = "10000" or i_opcd = "10001"
+	ELSE i_adrs;
 
-	mem:	ram PORT MAP(i_clkM, word, sRW, i_adrs, i_data, o_data);
+	cntrl:	memCntrl PORT MAP(i_clkC, i_rst, i_opcd, i_dst, sRW, word, spAdrs);
+
+	mem:	ram PORT MAP(i_clkM, word, sRW, adrs, i_data, o_data);
 
 END ARCHITECTURE; 

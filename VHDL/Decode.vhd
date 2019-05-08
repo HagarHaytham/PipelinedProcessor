@@ -56,6 +56,7 @@ if (rst = '1') then
 	sAdd2 <= (others => '0');
 	dAdd2 <= (others => '0');
 	flags <= (others => '0');
+
 	
 else
 	
