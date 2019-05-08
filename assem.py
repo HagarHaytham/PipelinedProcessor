@@ -204,19 +204,19 @@ def colon(file):
     wr = open(file,'w')
     count = 0
     for i in range(len( read)):
-        read[i] = str(count) + ' : ' + read[i]
+        read[i] = str(count) + ': ' + read[i]
         wr.write(read[i])
         count +=1
 ##############################################    
 #main
-inputFile = open("Testcases/new/TwoOperand.asm",'r')
+inputFile = open("Testcases/new/Branch.asm",'r')
 lines = inputFile.readlines()
 inputFile.close()
 #remove comments and empty lines
 lines = comment(lines)
 #print(lines)
-memData = open("data.txt",'w')
-memInstr = open("Instr.txt",'w')
+memData = open("Testcases/new/BranchData.mem",'w')
+memInstr = open("Testcases/new/BranchInstr.mem",'w')
       
 ORG(lines)
 
@@ -224,8 +224,8 @@ inputFile.close()
 memData.close()
 memInstr.close()
 
-colon('Instr.txt')
-colon('data.txt')
+colon('Testcases/new/BranchInstr.mem')
+colon('Testcases/new/BranchData.mem')
 
 
 
