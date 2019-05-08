@@ -36,4 +36,13 @@ run
 force -freeze sim:/fetchcirc/i_brnch 0 0
 run
 
+force -freeze sim:/fetchcirc/i_hzrd 1 0
+run
+force -freeze sim:/fetchcirc/i_hzrd 0 0
+run
+run
+run
+run
+run
 
+run
