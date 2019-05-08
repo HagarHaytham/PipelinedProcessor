@@ -76,19 +76,19 @@ BEGIN
 		IF(i_rst = '1')	THEN
 			o_hzd <= '0';
 		ELSIF rising_edge(i_clkC)	THEN
-			IF(i_hzrd <= '1' and hzd <= '0')	THEN
+			IF(i_hzrd = '1')	THEN
 				hzd <= '1';
-			ELSE
+				o_hzd <= '1';
+			ELSIF(i_hzrd = '0')	THEN
 				o_hzd <= '0';
+				hzd <= '0';
 			END IF;
 		END IF;
 	END PROCESS;
 
-	o_hzd <= '0';
-
 	ftchCntrl:	fetchControl PORT MAP(i_clkC, i_rst, i_hzrd, i_brnch, stall, dir, step, sel);
 
-	PC:		circuitPC PORT MAP(i_clkC, '0', stall, dir, step, sel, adrsPCI, adrsPCO);
+	PC:		circuitPC PORT MAP(i_clkC, hzd, i_hzrd, dir, step, sel, adrsPCI, adrsPCO);
 
 	mem:		ram PORT MAP(i_clkM, step, '0', adrsMem(19 downto 0), x"00000000", o_inst);
 
