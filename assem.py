@@ -214,14 +214,14 @@ def colon(file):
         j+=1
 ##############################################    
 #main
-inputFile = open("Testcases/NEW/Memory.asm",'r')
+inputFile = open("Testcases/NEW/Branch.asm",'r')
 lines = inputFile.readlines()
 inputFile.close()
 #remove comments and empty lines
 lines = comment(lines)
 #print(lines)
-memData = open("Testcases/NEW/MemoryData.mem",'w')
-memInstr = open("Testcases/NEW/MemoryInstr.mem",'w')
+memData = open("Testcases/NEW/BranchData.mem",'w')
+memInstr = open("Testcases/NEW/BranchInstr.mem",'w')
       
 ORG(lines)
 
@@ -229,8 +229,8 @@ inputFile.close()
 memData.close()
 memInstr.close()
 
-colon('Testcases/NEW/MemoryInstr.mem')
-colon('Testcases/NEW/MemoryData.mem')
+colon('Testcases/NEW/BranchInstr.mem')
+colon('Testcases/NEW/BranchData.mem')
 
 
 
