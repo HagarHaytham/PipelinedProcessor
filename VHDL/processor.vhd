@@ -85,6 +85,16 @@ GENERIC (n:integer:=16);
 	);
 END COMPONENT;
 
+-- For data forwarding 
+COMPONENT LoadStoreDetection IS
+    port(packet0,packet1 : IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+    -- packet0 is the instruction from D/E buffer 
+    -- packet1 is the instruction from F/D buffer 
+        MTM : OUT STD_LOGIC);
+END COMPONENT LoadStoreDetection;
+
+
+
 SIGNAL hzrd	:	std_logic;	--signal to detect hazard
 SIGNAL brnch	:	std_logic;	--signal to indicate branch
 SIGNAL instAdd	:	std_logic_vector(31 downto 0);	--Address lines for instruction memory
